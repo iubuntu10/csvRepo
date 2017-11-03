@@ -23,25 +23,24 @@ public class MatNrFinder {
 		String[] sLine;
 		
 		try {
-			source = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/source.csv"), ',', '"', 1);
-			target = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/target.csv"), ',', '"', 1);
+			source = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/WMBegBal4Visual-Sept-EQ1.csv"), '|', '"', 1);
+			target = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/ConvVisual2SAPMatlNum-ALL-EQ1.csv"), '|', '"', 1);
 			
 			List<String[]> tLines = target.readAll();
 			
 			while ((sLine = source.readNext()) != null) {
-//				System.out.print(sLine[0]);
+//				System.out.println(sLine[0]);
 				for (String[] tLine : tLines){
 					if(sLine[0].contentEquals(tLine[1])){
 						System.out.print(tLine[2]);
 						break;
 					}
-				}
+				}				
 				System.out.println();
 			}
 			
 			source.close();
 			target.close();
-			
 			
 		}catch (IOException e) {
 			// TODO Auto-generated catch block

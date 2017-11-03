@@ -31,8 +31,8 @@ public class RoutingList {
 			Date date = new Date();
 			System.out.println("Start at: "+date);			
 			
-			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Routing_test.csv"), '|', '"', 0);
-//			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/Routing_Reformat"+"_"+NewDateFormat.format(date)+".csv");
+			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Routing_Q110_11022017.csv"), '|', '"', 0);
+			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/Routing_Reformat"+"_"+NewDateFormat.format(date)+".csv");
 			while ((line = reader.readNext()) != null) {
 				
 				if (!(currentHeader.contentEquals(line[1]) && groupCounter.contentEquals(line[3]))){
@@ -44,7 +44,6 @@ public class RoutingList {
 				if(isHeaderNeed){
 					currentHeader = line[1];
 					groupCounter = line[3];
-//				    System.out.println(line[0]);
 					
 					String header = "H"+s+
 									currentHeader+s+
@@ -55,8 +54,8 @@ public class RoutingList {
 									taskListUsage+s+
 									status+s+s+
 									line[14]+s+s;
-					System.out.println(header);
-//					fw.write(header+"\n");
+//					System.out.println(header);
+					fw.write(header+"\n");
 				}
 				
 				String bomItem = "S"+s+
@@ -82,12 +81,12 @@ public class RoutingList {
 							     line[12]+s+
 							     hr+s+
 							     line[20];						 
-				System.out.println(bomItem);
-//				fw.write(bomItem+"\n");
+//				System.out.println(bomItem);
+				fw.write(bomItem+"\n");
 				
 			}
 			reader.close();
-//			fw.close();
+			fw.close();
 
 			date = new Date();
 			System.out.println("End at: "+date);
