@@ -34,7 +34,7 @@ public class UnbalanceFinder {
 		
 		try {
 			NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
-		    Number number = format.parse("-1,234");
+		    Number number;
 		    
 		    
 			source = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/mb51eq110.csv"), '|', '"', 1);

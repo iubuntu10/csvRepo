@@ -27,7 +27,7 @@ public class RoutingList {
 		String currentHeader = "";
 		try {
 			DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-			DateFormat NewDateFormat = new SimpleDateFormat("yyyyMMddHHMMSS");
+			DateFormat NewDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date date = new Date();
 			System.out.println("Start at: "+date);			
 			
