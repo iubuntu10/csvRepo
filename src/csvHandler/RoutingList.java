@@ -31,10 +31,9 @@ public class RoutingList {
 			Date date = new Date();
 			System.out.println("Start at: "+date);			
 			
-			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Routing_Q110_11022017.csv"), '|', '"', 0);
+			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Routing_Q110_11022017r.csv"), '|', '"', 0);
 			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/Routing_Reformat"+"_"+NewDateFormat.format(date)+".csv");
-			while ((line = reader.readNext()) != null) {
-				
+			while ((line = reader.readNext()) != null) {				
 				if (!(currentHeader.contentEquals(line[1]) && groupCounter.contentEquals(line[3]))){
 					isHeaderNeed = true;
 				} else {
