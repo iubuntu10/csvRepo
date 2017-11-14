@@ -41,8 +41,8 @@ public class BOMExtender {
 			// '"', 1);
 
 			// PROD
-			fgReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Active_FG_20171019.csv"), ',', '"', 1);
-			bomReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Query_BOM_20171017.csv"), ',', '"', 1);
+			fgReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Material Master Data_CY_Nov14.csv"), '|', '"', 1);
+			bomReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Query_BOM_Nov082017.csv"), '|', '"', 1);
 
 			// Read all rows at once
 			List<String[]> allFgRows = fgReader.readAll();
@@ -52,7 +52,7 @@ public class BOMExtender {
 			int m = 0;
 			int i = 0;
 			for (String[] fgRow : allFgRows) {
-				String fgItem = fgRow[2];
+				String fgItem = fgRow[0];
 //				for (String fgItem : fgRow) {
 //					// for (int n = 0; n < m; n++) {
 //					// System.out.print(" ");
