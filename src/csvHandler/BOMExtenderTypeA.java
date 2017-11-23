@@ -2,7 +2,9 @@ package csvHandler;
 
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +13,12 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-public class BOMExtender {
+public class BOMExtenderTypeA {
 
 	
 
 	public static void main(String[] args) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
 		long t1 = System.currentTimeMillis();
@@ -30,6 +32,7 @@ public class BOMExtender {
 		// Start reading from line number 2 (line numbers start from zero)
 		CSVReader fgReader = null;
 		CSVReader bomReader = null;
+		FileWriter fw = null;
 
 		try {
 			// //TEST
@@ -43,7 +46,7 @@ public class BOMExtender {
 			// PROD
 			fgReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/FG_Nov21.csv"), '|', '"', 1);
 			bomReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Query_BOM_NOV232017.csv"), '|', '"', 1);
-
+			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/MaterialMasterData_"+ dateFormat.format(date) +".csv");
 			// Read all rows at once
 			List<String[]> allFgRows = fgReader.readAll();
 			List<String[]> allBomRows = bomReader.readAll();
@@ -53,6 +56,7 @@ public class BOMExtender {
 			int i = 0;
 			for (String[] fgRow : allFgRows) {
 				String fgItem = fgRow[0];
+				System.out.print(".");
 //				for (String fgItem : fgRow) {
 //					// for (int n = 0; n < m; n++) {
 //					// System.out.print(" ");
@@ -62,11 +66,12 @@ public class BOMExtender {
 //					getChildren(i, m, fgItem, allBomRows);
 //				}
 				
-				getChildren(i, m, fgItem, allBomRows);
+				getChildren(i, m, fgItem, allBomRows,fw);
 			}
 			long t2 = System.currentTimeMillis();
 			
 			date = new Date();
+			System.out.println("");
 			System.out.println(dateFormat.format(date));
 			System.out.println("****************** " + (t2 - t1) / 1000 + " seconds *********************");
 
@@ -86,15 +91,20 @@ public class BOMExtender {
 			// System.out.println(Arrays.toString(nextLine));
 			// }
 			// }
+
+			fgReader.close();
+			bomReader.close();
+			fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
+		
 
 	}
 
-	public static void getChildren(int i, int m, String fgItem, List<String[]> allBomRows) {
+	public static void getChildren(int i, int m, String fgItem, List<String[]> allBomRows, OutputStreamWriter fw) throws IOException {
 		int j = 0;
 		m = m + 1;
 		ArrayList<String[]> list = new ArrayList<String[]>();
@@ -112,8 +122,8 @@ public class BOMExtender {
 //				System.out.print("\t");
 //			}
 
-			System.out.println("");
-			System.out.println("" + fgItem);
+			fw.write("\n");
+			fw.write("" + fgItem+"\n");
 			
 			// String[] ss = new String[list.size()];
 			// ss = list.toArray(ss);
@@ -122,7 +132,7 @@ public class BOMExtender {
 				 * @TODO - append children list
 				 */
 //				System.out.println("   " + ++j + " " + Arrays.toString(s));
-				System.out.println(s[0]);
+				fw.write(s[0]+"\n");
 			}
 
 			for (String s[] : list) {
@@ -133,7 +143,7 @@ public class BOMExtender {
 //				 }
 ////				 System.out.println(" " + ++j + " " + s1);
 //				System.out.println(" "+s1);
-				getChildren(i, m, s1, allBomRows);
+				getChildren(i, m, s1, allBomRows,fw);
 			}
 
 		} 
@@ -146,8 +156,8 @@ public class BOMExtender {
 //					System.out.print("\t");
 //				}
 //				System.out.println("======no structure====");
-				System.out.println("");
-				System.out.println("" + fgItem + "  ==== No BOM Found ====");
+				fw.write("\n");
+				fw.write("" + fgItem + "  ==== No BOM Found ====\n");
 //				System.out.println(fgItem);
 			} else {
 				
