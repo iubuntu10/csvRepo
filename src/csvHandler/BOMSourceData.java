@@ -27,8 +27,8 @@ public class BOMSourceData {
 			Date date = new Date();
 			System.out.println("Start at: " + date);
 
-			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Source_Data_20171017v1.2.csv"), '|', '"', 1);
-			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/Source_Data_" + dateFormat.format(date) + ".csv");
+			reader = new CSVReader(new FileReader("C://Users/iubun/Desktop/MasterData/Query_BOM_NOV242017_NOV09.csv"), '|', '"', 1);
+			fw = new FileWriter("C://Users/iubun/Desktop/MasterData/Results/Source_Data_" + dateFormat.format(date) + ".csv");
 			// fw = new FileWriter("C://Users/Garyg/Desktop/source_data_"+date.getDate()+".csv");
 
 			do {
@@ -56,7 +56,7 @@ public class BOMSourceData {
 			String header = "ROWID|WORKORDER_TYPE|WORKORDER_BASE_ID|Basic_UoM|Base_Qty|WORKORDER_LOT_ID|WORKORDER_SPLIT_ID|"
 					+ "WORKORDER_SUB_ID|OPERATION_SEQ_NO|PIECE_NO|SUBORD_WO_SUB_ID|PART_ID|REFERENCE|STATUS|QTY_PER|CONVERT|"
 					+ "QTY_PER_TYPE|FIXED_QTY|SCRAP_PERCENT|DIMENSIONS|DIM_EXPRESSION|USAGE_UM|EFFECTIVE_DATE|DISCONTINUE_DATE|"
-					+ "DESCRIPTION|DESCRIPTION2|Description3|COMMODITY_CODE|PRODUCT_CODE|COMMODITY_CODE3|PRODUCT_CODE4\n";
+					+ "DESCRIPTION|DESCRIPTION2|Description3|COMMODITY_CODE|PRODUCT_CODE|COMMODITY_CODE3|PRODUCT_CODE4|CYNCYN|Status\n";
 			fw.write(header);
 
 			for (ArrayList<String[]> item : boms) {

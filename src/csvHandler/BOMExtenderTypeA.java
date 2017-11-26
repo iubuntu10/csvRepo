@@ -44,9 +44,9 @@ public class BOMExtenderTypeA {
 			// '"', 1);
 
 			// PROD
-			fgReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/FG_Nov21.csv"), '|', '"', 1);
-			bomReader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Query_BOM_NOV232017.csv"), '|', '"', 1);
-			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/MaterialMasterData_"+ dateFormat.format(date) +".csv");
+			fgReader = new CSVReader(new FileReader("C://Users/iubun/Desktop/MasterData/Copy of FG_Nov21.csv"), '|', '"', 1);
+			bomReader = new CSVReader(new FileReader("C://Users/iubun/Desktop/MasterData/Results/Source_Data_20171125.csv"), '|', '"', 1);
+			fw = new FileWriter("C://Users/iubun/Desktop/MasterData/Results/MaterialMasterData_"+ dateFormat.format(date) +".csv");
 			// Read all rows at once
 			List<String[]> allFgRows = fgReader.readAll();
 			List<String[]> allBomRows = bomReader.readAll();
@@ -110,7 +110,7 @@ public class BOMExtenderTypeA {
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		for (String[] bomRow : allBomRows) {
 			if (bomRow[2].trim().equals(fgItem.trim())) {
-				String[] sBomRow = new String[] { bomRow[9]};
+				String[] sBomRow = new String[] { bomRow[11]};
 				list.add(sBomRow);
 			}
 		}

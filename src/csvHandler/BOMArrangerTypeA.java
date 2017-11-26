@@ -33,8 +33,8 @@ public class BOMArrangerTypeA {
 			System.out.println("Start at: "+date);
 			
 			
-			reader = new CSVReader(new FileReader("C://Users/Garyg/Desktop/MasterData/Results/Source_Data_" + dateFormat.format(date) + ".csv"), '|', '"', 1);			
-			fw = new FileWriter("C://Users/Garyg/Desktop/MasterData/Results/BOM_reformat"+"_"+NewDateFormat.format(date)+".csv");
+			reader = new CSVReader(new FileReader("C://Users/iubun/Desktop/MasterData/Results/Source_Data_" + dateFormat.format(date) + ".csv"), '|', '"', 1);			
+			fw = new FileWriter("C://Users/iubun/Desktop/MasterData/Results/BOM_reformat"+"_"+NewDateFormat.format(date)+".csv");
 			while ((line = reader.readNext()) != null) {
 				
 				if (!currentHeader.contentEquals(line[2])){
@@ -78,7 +78,9 @@ public class BOMArrangerTypeA {
 								 line[18]+"|||||||"+
 								 validFromDate+"|"+
 								 validToDate+"|||||||"+
-								 line[26];							 
+								 line[26]+"||||||||||"+
+								 line[31]+"|"+
+								 line[32];						 
 				System.out.println(bomItem);
 				fw.write(bomItem+"\n");				
 			}
